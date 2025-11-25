@@ -1,0 +1,147 @@
+                                                SELECT en MySQL
+--------------------------------------------------------------------------------------------------------------------
+
+
+1 : definition de SELECT :
+SELECT est une commande SQL utilisée pour sélectionner des données d'une ou plusieurs tables de la base de données.
+
+2 : syntaxe de SELECT :
+SELECT colonnes1,colonnes2,... FROM nom_table;
+
+3 : exemples de SELECT :
+
+    // selectionner toutes les colonnes
+    // * => toutes les colonnes
+    SELECT * FROM nom_table;
+
+
+
+    // selectionner certaines colonnes
+    SELECT colonnes1,colonnes2,... FROM nom_table;
+
+
+    // selectionner certaines colonnes avec condition
+    SELECT colonnes1,colonnes2,... FROM nom_table WHERE condition;
+
+4 : les conditions
+    
+    1 : explication du WHERE
+        La clause WHERE est utilisée pour filtrer les enregistrements selons une condition spécfiee.
+        SELECT colonnes1,colonnes2,... FROM nom_table WHERE condition;
+        exemple : SELECT * FROM eleves WHERE age > 18; 
+        // cet exemple va sélectionner tous les enregistrements de la table "eleves" où l'âge est supérieur à 18.
+
+    2 : les operateurs de comparaison
+        = : egal
+        <> : different
+        > : superieur
+        < : inferieur
+        >= : superieur ou egal
+        <= : inferieur ou egal
+
+        exemples :
+            - = : SELECT * FROM eleves WHERE nom = 'Doe';
+            - > : SELECT * FROM eleves WHERE age > 18;
+            - < : SELECT * FROM eleves WHERE age < 18;
+            - >= : SELECT * FROM eleves WHERE age >= 18;
+            - <= : SELECT * FROM eleves WHERE age <= 18;
+
+    3 : LIKE , IS , BETWEEN
+        LIKE : permet de rechercher des enregistrements qui contiennent une sequence de caracteres spécifique.
+        IS : permet de verifier si une valeur est nulle ou non.
+        BETWEEN : permet de verifier si une valeur est comprise entre deux valeurs.
+
+        exemples :
+            - LIKE : SELECT * FROM eleves WHERE nom LIKE 'Doe';
+            - IS : SELECT * FROM eleves WHERE nom IS NULL;
+            - BETWEEN : SELECT * FROM eleves WHERE age BETWEEN 18 AND 25;
+
+5 : tri des resultats avec ORDER BY :
+
+    La clause ORDER BY est utilisée pour trier les enregistrements dans un ordre croissant ou décroissant.
+    SELECT colonnes1,colonnes2,... FROM nom_table ORDER BY colonne1,colonne2,... ASC|DESC;
+
+    exemple : 
+        - SELECT * FROM eleves ORDER BY age DESC;
+        // cet exemple va sélectionner tous les enregistrements de la table "eleves" triés par ordre décroissant d'âge.
+
+        - SELECT * FROM eleves ORDER BY age ASC;
+        // cet exemple va sélectionner tous les enregistrements de la table "eleves" triés par ordre croissant d'âge.
+
+6 : Limiter le nombre de résultats avec LIMIT :
+
+    La clause LIMIT est utilisée pour limiter le nombre de résultats retournés par une requête SELECT.
+    SELECT colonnes1,colonnes2,... FROM nom_table LIMIT nombre;
+
+    exemple : SELECT * FROM eleves LIMIT 10;
+    // cet exemple va sélectionner les 10 premiers enregistrements de la table "eleves".
+
+7 : Combiner WHERE, ORDER BY, LIMIT :
+
+    SELECT colonnes1,colonnes2,... FROM nom_table WHERE condition ORDER BY colonne1,colonne2,... ASC|DESC LIMIT nombre;
+
+    exemple : SELECT * FROM eleves WHERE age > 18 ORDER BY age DESC LIMIT 10;
+    // cet exemple va sélectionner les 10 premiers enregistrements de la table "eleves" où l'âge est supérieur à 18, triés par ordre décroissant d'âge.
+
+8 : Sélectionner sans doublons avec DISTINCT :
+
+    La clause DISTINCT est utilisée pour sélectionner uniquement les enregistrements sans doublons.
+    SELECT DISTINCT colonnes1,colonnes2,... FROM nom_table;
+
+    exemple : SELECT DISTINCT nom FROM eleves;
+    // cet exemple va sélectionner tous les noms différents de la table "eleves".
+
+9 : utilisation de Concatenation :
+
+    La concatenation est l'operation de jointure de deux ou plusieurs chaines de caracteres.
+    Elle est réalisée avec le clause CONCAT.
+
+    SELECT concat(colonnes1,' une phrase ',colonnes2) AS nouveau_nom_colonne FROM nom_table;
+    // le mot-clé AS est utilisé pour donner un nouveau nom à la colonne résultante.
+
+    exemple : SELECT concat('le nom : ',nom,'le prenom : ',prenom) AS nom_complet FROM eleves;
+    // cet exemple va afficher la liste des eleves avec leurs noms complets.
+
+10 : utilisation du quelque clause :
+
+    1 - IFNULL -> checker si la valeur est nulle et afficher une autre valeur si c'est le cas
+    example : SELECT IFNULL(nom,'non renseigne') FROM eleves;
+    // cet exemple va afficher la liste des eleves avec le nom "non renseigne" si le nom est null
+
+
+    2 - UPPER -> transformer en majuscule
+    example : SELECT UPPER(nom) FROM eleves;
+    // cet exemple va afficher la liste des eleves avec le nom en majuscule
+
+
+    3 - LOWER -> transformer en minuscule
+    example : SELECT LOWER(nom) FROM eleves;
+    // cet exemple va afficher la liste des eleves avec le nom en minuscule
+
+
+    4 - LPAD -> ajouter des caracteres a gauche jusqu'a atteindre la longueur desiree
+    example : SELECT LPAD(nom,10,'0') FROM eleves;
+    // cet exemple va afficher la liste des eleves avec le nom complet et ajouter des zeros a gauche jusqu'a atteindre 10 caracteres
+
+
+    5 - RPAD -> ajouter des caracteres a droite jusqu'a atteindre la longueur desiree
+    example : SELECT RPAD(nom,10,'0') FROM eleves;
+    // cet exemple va afficher la liste des eleves avec le nom complet et ajouter des zeros a droite jusqu'a atteindre 10 caracteres
+
+
+    6 - SUBSTRING -> extraire une partie de la chaine de caracteres
+    example : SELECT SUBSTRING(nom,1,5) FROM eleves;
+    // cet exemple va afficher la liste des eleves avec les 5 premiers caracteres de leur nom
+
+    7 - LEFT -> extraire une partie de la chaine de caracteres
+    example : SELECT LEFT(nom,5) FROM eleves;
+    // cet exemple va afficher la liste des eleves avec les 5 premiers caracteres de leur nom
+
+    8 - RIGHT -> extraire une partie de la chaine de caracteres
+    example : SELECT RIGHT(nom,5) FROM eleves;
+    // cet exemple va afficher la liste des eleves avec les 5 dernier caracteres de leur nom
+
+
+    9 - REPLACE -> remplacer une partie de la chaine de caracteres
+    example : SELECT REPLACE(nom,'a','o') FROM eleves;
+    // cet exemple va afficher la liste des eleves avec les caracteres 'a' remplace par 'o'

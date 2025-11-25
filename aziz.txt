@@ -1,0 +1,127 @@
+Exercice MySQL - Révision Complète
+Partie 1: Création de Base de Données et Tables
+1.1 Crée une base de données appelée gestion_ecole
+
+1.2 Utilise la base de données gestion_ecole
+
+1.3 Crée une table eleves avec les colonnes suivantes :
+
+id (entier, clé primaire, auto-incrément)
+
+nom (chaîne de 50 caractères, non null)
+
+prenom (chaîne de 50 caractères, non null)
+
+age (entier)
+
+date_naissance (date)
+
+date_inscription (datetime)
+
+1.4 Crée une table cours avec les colonnes suivantes :
+
+id (entier, clé primaire, auto-incrément)
+
+nom_cours (chaîne de 100 caractères, unique)
+
+prix (décimal)
+
+duree_heures (entier)
+
+Partie 2: Insertion de Données
+2.1 Insère 5 élèves dans la table eleves en spécifiant les colonnes
+
+2.2 Insère 3 cours dans la table cours sans spécifier les colonnes
+
+2.3 Insère plusieurs cours en une seule requête (au moins 2)
+
+Partie 3: Sélection de Données
+3.1 Sélectionne tous les élèves
+
+3.2 Sélectionne seulement les noms et prénoms des élèves
+
+3.3 Sélectionne les élèves âgés de plus de 18 ans
+
+3.4 Sélectionne les élèves dont le nom commence par 'D'
+
+3.5 Sélectionne les cours par ordre décroissant de prix
+
+3.6 Limite les résultats à 3 élèves
+
+3.7 Sélectionne les noms distincts des élèves
+
+Partie 4: Fonctions sur Chaînes de Caractères
+4.1 Affiche les noms en majuscules
+
+4.2 Affiche les prénoms en minuscules
+
+4.3 Concatène le nom et le prénom dans une colonne "nom_complet"
+
+4.4 Remplace tous les 'a' par 'o' dans les noms
+
+4.5 Affiche les 3 premiers caractères des prénoms
+
+Partie 5: Fonctions sur Dates
+5.1 Affiche la date et heure actuelles
+
+5.2 Affiche seulement la date actuelle
+
+5.3 Affiche seulement l'heure actuelle
+
+5.4 Extrait l'année de naissance de chaque élève
+
+5.5 Extrait le mois de naissance de chaque élève
+
+5.6 Affiche le nom du jour de la semaine pour chaque date de naissance
+
+5.7 Ajoute 1 an à la date d'inscription de chaque élève
+
+5.8 Calcule l'âge de chaque élève en utilisant sa date de naissance
+
+Partie 6: Fonctions Numériques
+6.1 Trouve le prix maximum des cours
+
+6.2 Trouve le prix minimum des cours
+
+6.3 Calcule la moyenne des prix des cours
+
+6.4 Calcule la somme totale des prix des cours
+
+6.5 Compte le nombre total d'élèves
+
+6.6 Compte le nombre de cours
+
+Partie 7: Modification et Suppression
+7.1 Modifie l'âge d'un élève spécifique
+
+7.2 Augmente tous les prix des cours de 10%
+
+7.3 Supprime un élève spécifique
+
+7.4 Supprime tous les élèves de moins de 16 ans
+
+Partie 8: Manipulation de Tables
+8.1 Ajoute une colonne email à la table eleves
+
+8.2 Modifie le type de la colonne duree_heures en SMALLINT
+
+8.3 Renomme la colonne nom_cours en titre_cours
+
+8.4 Supprime la colonne email de la table eleves
+
+8.5 Crée une nouvelle table cours_backup avec la même structure que cours
+
+8.6 Copie toutes les données de cours vers cours_backup
+
+Partie 9: Combinaison de Concepts
+9.1 Sélectionne les 2 cours les plus chers
+
+9.2 Affiche le nom complet des élèves (nom + prénom) par ordre alphabétique
+
+9.3 Calcule la différence en jours entre la date d'inscription et aujourd'hui
+
+9.4 Trouve les élèves nés en janvier
+
+9.5 Formate les dates de naissance au format "JJ/MM/AAAA"
+
+9.6 Affiche les cours dont le prix est entre 50 et 200 euros, triés par durée

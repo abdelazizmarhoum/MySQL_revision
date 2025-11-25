@@ -1,0 +1,177 @@
+                                                Revision du MySQL
+--------------------------------------------------------------------------------------------------------------------
+
+
+1 : definition de MySQL : 
+mysql est un systeme de gestion de base de données relationnelle open source.
+il permet de stocker et de recuperer des donnees sous forme de table.
+il utilise le langage SQL (structured query language) pour interagir avec la base de données.
+il existe plusieurs versions de mysql : mysql community edition, mysql enterprise edition, mariadb...
+
+2 : Xampp :
+Xampp est un logiciel de développement intégré qui permet de mettre en place rapidement un serveur web local sur son ordinateur.
+Il contient les outils suivants :
+    - Apache : serveur web open source
+    - MySQL : système de gestion de base de données
+    - PHP : langage de programmation serveur
+    - Perl : langage de programmation serveur
+    - Python : langage de programmation serveur
+    - Ruby : langage de programmation serveur
+    - Git : système de contrôle de version
+    - phpMyAdmin : interface graphique pour gérer les bases de données MySQL
+il est important de utiliser xampp pour pouvoir utiliser mysql , car mysql ne peut pas fonctionner sans apache
+
+3 : démarrage mysql en cmd 
+    - mysql -u root : pas de mot de passe
+    - mysql -u root -p : avec mot de passe
+    
+    - exit : quitte mysql
+    - Ctrl + C : arrête mysql
+
+Quelques vocabulaires de MySQL :
+    - database : ensemble de tables liées entre elles
+    - table : ensemble de lignes et de colonnes
+    - ligne : ensemble de données d'une même table
+    - colonne : ensemble de données d'une même table mais d'une même categorie
+    - champ : une colonne
+    - enregistrement : une ligne
+    - clé primaire : identifiant unique d'une ligne
+    - requête : instruction sql permettant de récupérer des données
+    - SELECT : instruction sql permettant de sélectionner des données
+    - FROM : instruction sql permettant de préciser de quelle table on veut récupérer les données
+    - WHERE : instruction sql permettant de préciser des conditions pour la sélection
+    - INSERT INTO : instruction sql permettant d'insérer des données
+    - VALUES : instruction sql permettant de préciser les valeurs des champs
+    - UPDATE : instruction sql permettant de modifier des données
+    - DELETE FROM : instruction sql permettant de supprimer des données
+
+
+4 : Les commandes principales de MySQL :
+    - SHOW DATABASES; : Affiche la liste des bases de données
+    - SELECT DATABASE() : Affiche le nom de la base de données actuelle
+    - drop database nom_database; : Supprime une base de données
+    - create database nom_database; : Crée une base de données
+    - use nom_database; : Se connecte à une base de données
+    - show tables; : Affiche la liste des tables de la base de données actuelle
+    - describe nom_table; : Affiche les informations d'une table
+    - source nom_fichier.sql; : Exécute un fichier sql
+
+5 : Les commandes principales du tableau :
+    - création d'un tableau : 
+
+        - CREATE TABLE nom_table (
+            nom_champ1 type_champ1,
+            nom_champ2 type_champ2,
+            ...
+        );
+
+        - nom_champ : nom du champ
+        - type_champ : type de donnée du champ
+
+        exemple : 
+            CREATE TABLE eleves (
+                id INT,
+                nom VARCHAR(255),
+                prenom VARCHAR(255),
+                date_naissance DATE
+            );
+
+
+    - les types de champs :
+        - INT : entier
+        - VARCHAR(n) : chaîne de caractères de taille n
+        - TEXT : texte long
+        - DATE : date
+        - TIME : heure
+        - DATETIME : date et heure
+
+    - modification d'un tableau :
+
+        - ALTER TABLE nom_table ADD nom_champ type_champ; -> Ajoute un champ à la table
+            - exemple : ALTER TABLE eleves ADD age INT;
+
+        - ALTER TABLE nom_table MODIFY nom_champ type_champ; -> Modifie le type d'un champ de la table
+            - exemple : ALTER TABLE eleves MODIFY age TINYINT;
+
+        - ALTER TABLE nom_table DROP nom_champ; -> Supprime un champ de la table
+            - exemple : ALTER TABLE eleves DROP age;
+
+        - ALTER TABLE nom_table CHANGE nom_champ1 nom_champ2 type_champ; -> Change le nom d'un champ de la table
+            - exemple : ALTER TABLE eleves CHANGE id id_eleve INT;
+
+        - ALTER TABLE nom_table RENAME TO nom_table_nouveau; -> Change le nom d'une table
+            - exemple : ALTER TABLE eleves RENAME TO élèves;
+            // vous pouvez aussi utiliser la commande : RENAME TABLE eleves TO élèves; 
+
+        // MODIFY vs CHANGE , différence entre les deux :
+            - modify modifie seulement le type d'un champ
+            - change modifie le nom d'un champ
+
+
+    - suppression d'un tableau :
+        - DROP TABLE nom_table; -> Supprime un tableau
+            - exemple : DROP TABLE eleves;
+
+    - description d'un tableau :
+        - DESCRIBE nom_table; -> Affiche les informations d'un tableau
+            - exemple : DESCRIBE eleves;
+            // vous pouvez aussi utiliser la commande : SHOW COLUMNS FROM nom_table;
+    
+    - vider un tableau :
+        - TRUNCATE TABLE nom_table; -> Vide un tableau
+            - exemple : TRUNCATE TABLE eleves;
+
+    - les constraints en mysql :
+
+        - PRIMARY KEY : clé primaire d'une table
+        - NOT NULL : champ qui ne peut pas être vide
+        - NULL : champ qui peut être vide
+        - UNIQUE : champ qui doit être unique dans sa table
+        - auto_increment : champ qui s'incrémente automatiquement , il prend la valeur de 1 par défaut et il ajouter
+          auto-incrémentation prend toujours en compte la valeur existante la plus élevée, même si vous l'avez saisie manuellement.
+
+    - quelques exemples pour réinitialiser le contenu d'un champ auto_increment :
+
+        - ALTER TABLE nom_table AUTO_INCREMENT = 1; -> Réinitialise le contenu d'un champ auto_increment
+        - truncate table nom_table; -> Supprime tous les enregistrements d'une table et réinitialise le champ auto_increment
+        - DELETE FROM nom_table; -> Supprime tous les enregistrements d'une table mais ne réinitialise pas le champ auto_increment
+
+    - utiliser les constraints dans la création d'un tableau :
+        - CREATE TABLE nom_table (
+            nom_champ1 type_champ1 constraint,
+            nom_champ2 type_champ2 constraint,
+            ...
+        );
+        exemple : 
+            CREATE TABLE eleves (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                nom VARCHAR(255) UNIQUE,
+                prenom VARCHAR(255) NOT NULL,
+                date_naissance DATE NULL
+            );
+
+            - id : champ obligatoire, entier, auto-increment, clé primaire
+            - nom : champ obligatoire, chaîne de caractères de taille 255, doit être unique
+            - prenom : champ obligatoire, chaîne de caractères de taille 255
+            - date_naissance : champ optionnel, date
+            
+    - ajouter un constraint à une table existante :
+        - ALTER TABLE nom_table ADD CONSTRAINT constraint_nom_champ type_constraint;
+            - exemple : ALTER TABLE eleves ADD CONSTRAINT pk_id PRIMARY KEY (id);
+
+    - modifier un constraint d'une table existante :
+        - ALTER TABLE nom_table MODIFY CONSTRAINT constraint_nom_champ type_constraint;
+            - exemple : ALTER TABLE eleves MODIFY CONSTRAINT pk_id PRIMARY KEY (id);
+
+    - supprimer un constraint d'une table existante :
+        - ALTER TABLE nom_table DROP CONSTRAINT constraint_nom_champ;
+            - exemple : ALTER TABLE eleves DROP CONSTRAINT pk_id;
+
+    
+    - couper et coller des lignes dans un tableau :
+        - Copier la structure :
+            - CREATE table2 LIKE table1;
+        - Copier les données + structure :
+            - CREATE table2 AS SELECT * FROM table1;
+        - Coller les données :
+            - INSERT INTO table2 SELECT * FROM table1;

@@ -1,0 +1,37 @@
+                                            INSERT en MySQL
+--------------------------------------------------------------------------------------------------------------------
+
+1 : définition :
+    La clause INSERT est utilisée pour ajouter de nouveaux enregistrements à une table dans une base de données MySQL.
+
+2 : syntaxe :
+
+
+// spécifiez les colonnes dans lesquelles vous insérez les données
+INSERT INTO nom_table (champ1, champ2, ...) VALUES (valeur1, valeur2, ...);
+* exemple :
+INSERT INTO eleves (nom, prenom, date_naissance) VALUES ('Doe', 'John', '2000-01-01');
+
+
+
+
+// insérer des données sans préciser les colonnes
+INSERT INTO nom_table VALUES (valeur1, valeur2, ...);
+* exemple :
+INSERT INTO eleves VALUES ('Doe', 'John', '2000-01-01');
+
+
+
+// insérer plusieurs enregistrements
+INSERT INTO nom_table (champ1, champ2, ...) VALUES (valeur1, valeur2, ...), (valeur1, valeur2, ...), ...;
+* exemple :
+INSERT INTO eleves (nom, prenom, date_naissance) VALUES ('Doe', 'John', '2000-01-01'), ('Dupont', 'Jean', '2001-01-01');
+
+
+
+
+3 : Insertion partielle (certaines colonnes seulement)
+// insérer des données dans certaines colonnes uniquement , les autres seront mis à NULL par défaut
+INSERT INTO nom_table (champ1, champ2) VALUES (valeur1, valeur2);
+* exemple :
+INSERT INTO eleves (nom, prenom) VALUES ('Doe', 'John');

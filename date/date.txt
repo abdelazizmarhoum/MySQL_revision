@@ -1,0 +1,158 @@
+                                        Date et time functions en MySQL
+------------------------------------------------------------------------------------------------------------------------
+
+1 : definition de DATE et TIME :
+    DATE : c'est un type de donnée qui stocke une date complète.
+    TIME : c'est un type de donnée qui stocke le temps.
+
+2 : Types de colonnes date / heure : 
+
+    1 - DATE      -> stocke une date completer                        -> AAAA-MM-JJ
+    2 - TIME      -> stocke le temps                                  -> HH:MM:SS
+    3 - DATETIME  -> stocke une date et le temps                      -> AAAA-MM-JJ HH:MM:SS
+    4 - TIMESTAMP -> stocke une date et le temps avec fuseau horaire  -> AAAA-MM-JJ HH:MM:SS
+    5 - YEAR      -> stocke une année                                 -> YYYY
+
+3 : Obtenir la date / heure actuelle :
+
+    1 - NOW()       -> retourne la date et l'heure actuelles              -> AAAA-MM-JJ HH:MM:SS
+    2 - CURDATE()   -> retourne la date actuelle                          -> AAAA-MM-JJ
+    3 - CURTIME()   -> retourne le temps actuel                           -> HH:MM:SS
+    4 - CURRENT_TIMESTAMP() -> retourne la date et l'heure actuelles      -> AAAA-MM-JJ HH:MM:SS
+    5 - CURRENT_DATE()  -> retourne la date actuelle                      -> AAAA-MM-JJ
+    6 - CURRENT_TIME()  -> retourne le temps actuel                       -> HH:MM:SS
+
+    exemples : 
+    
+        1 - SELECT NOW(); -> 2023-04-14 14:34:56
+        2 - SELECT CURDATE(); -> 2023-04-14
+        3 - SELECT CURTIME(); -> 14:34:56
+        4 - SELECT CURRENT_TIMESTAMP(); -> 2023-04-14 14:34:56
+        5 - SELECT CURRENT_DATE(); -> 2023-04-14
+        6 - SELECT CURRENT_TIME(); -> 14:34:56
+        7 - SELECT LOCALTIME(); -> 14:34:56
+        8 - SELECT LOCALTIMESTAMP(); -> 2023-04-14 14:34:56
+
+4 : Extraire une partie de la date / heure
+
+    1 - EXTRACT() -> extraire une partie de la date / heure
+
+        exemple : 
+            1 - SELECT EXTRACT(YEAR FROM '2023-04-14'); -> 2023
+            2 - SELECT EXTRACT(MONTH FROM '2023-04-14'); -> 4
+            3 - SELECT EXTRACT(DAY FROM '2023-04-14'); -> 14
+            4 - SELECT EXTRACT(HOUR FROM '14:34:56'); -> 14
+            5 - SELECT EXTRACT(MINUTE FROM '14:34:56'); -> 34
+            6 - SELECT EXTRACT(SECOND FROM '14:34:56'); -> 56
+
+    2 - YEAR() -> extraire l'année de la date
+    3 - MONTH() -> extraire le mois de la date
+    4 - DAY() -> extraire le jour de la date
+    5 - HOUR() -> extraire l'heure de la date
+    6 - MINUTE() -> extraire la minute de la date
+    7 - SECOND() -> extraire la seconde de la date
+    8 - MONTHNAME() -> extraire le nom du mois de la date
+    9 - DAYNAME() -> extraire le nom du jour de la date
+
+
+    exemples : 
+    1 - SELECT YEAR('2023-04-14'); -> 2023
+    2 - SELECT MONTH('2023-04-14'); -> 4
+    3 - SELECT DAY('2023-04-14'); -> 14
+    4 - SELECT HOUR('14:34:56'); -> 14
+    5 - SELECT MINUTE('14:34:56'); -> 34
+    6 - SELECT SECOND('14:34:56'); -> 56
+    7 - SELECT MONTHNAME('2023-04-14'); -> April
+    8 - SELECT DAYNAME('2023-04-14'); -> Monday
+
+
+5 : Fonctions de manipulation de dates et heures :
+    // Le mot-clé "INTERVAL" est utilisé pour spécifier la période à ajouter ou à soustraire.
+    // Le mot-clé "unité" peut prendre les valeurs suivantes : YEAR, MONTH, DAY, HOUR, MINUTE, SECOND.
+
+    1 - DATE_ADD() -> ajouter une période à une date
+        format : DATE_ADD(date, INTERVAL nombre unité)
+        exemples : 
+            1 - SELECT DATE_ADD('2023-04-14', INTERVAL 1 MONTH); -> 2023-05-14
+            2 - SELECT DATE_ADD('2023-04-14', INTERVAL 1 DAY); -> 2023-04-15
+            3 - SELECT DATE_ADD('14:34:56', INTERVAL 1 HOUR); -> 15:34:56
+            4 - SELECT DATE_ADD('14:34:56', INTERVAL 1 MINUTE); -> 14:35:56
+            5 - SELECT DATE_ADD('14:34:56', INTERVAL 1 SECOND); -> 14:34:57
+
+
+    2 - DATE_SUB() -> soustraire une période à une date
+        format : DATE_SUB(date, INTERVAL nombre unité)
+        exemples : 
+            1 - SELECT DATE_SUB('2023-04-14', INTERVAL 1 MONTH); -> 2023-03-14
+            2 - SELECT DATE_SUB('2023-04-14', INTERVAL 1 DAY); -> 2023-04-13
+            3 - SELECT DATE_SUB('14:34:56', INTERVAL 1 HOUR); -> 13:34:56
+            4 - SELECT DATE_SUB('14:34:56', INTERVAL 1 MINUTE); -> 14:33:56
+            5 - SELECT DATE_SUB('14:34:56', INTERVAL 1 SECOND); -> 14:34:55
+
+
+6 : Différences entre deux dates / heures : 
+
+    1 - DATEDIFF() -> différence entre deux dates
+        format : DATEDIFF(date1, date2)
+        exemples : 
+            1 - SELECT DATEDIFF('2023-04-14', '2023-04-01'); -> 13
+            2 - SELECT DATEDIFF('2023-04-14', '2023-05-14'); -> -30
+
+    
+    2 - TIMEDIFF() -> différence entre deux heures
+        format : TIMEDIFF(heure1, heure2)
+        exemples : 
+            1 - SELECT TIMEDIFF('14:34:56', '14:00:00'); -> 00:34:56
+            2 - SELECT TIMEDIFF('14:34:56', '15:00:00'); -> -00:34:56
+
+    
+    3 - TIMESTAMPDIFF() -> différence entre deux dates / heures
+        format : TIMESTAMPDIFF(unité, date1, date2)
+        exemples : 
+            1 - SELECT TIMESTAMPDIFF(MONTH, '2023-04-14', '2023-05-14'); -> 1
+            2 - SELECT TIMESTAMPDIFF(DAY, '2023-04-14', '2023-04-15'); -> 1
+            3 - SELECT TIMESTAMPDIFF(HOUR, '14:34:56', '15:34:56'); -> 1
+            4 - SELECT TIMESTAMPDIFF(MINUTE, '14:34:56', '14:35:56'); -> 1
+            5 - SELECT TIMESTAMPDIFF(SECOND, '14:34:56', '14:34:57'); -> 1
+
+7 : Conversion de date / heure utilisant la Fonctions DATE_FORMAT() :
+
+    // ce fonction permet de convertir une date en une chaine de caracteres selon un format specifique
+    // le format est compose de caracteres speciaux et de caracteres ordinaire
+    // liste des caracteres speciaux :
+
+| Format | Description                                                     | Exemple                                                     |
+| ------ | --------------------------------------------------------------- | ----------------------------------------------------------- |
+| `%Y`   | Année sur 4 chiffres                                            | `2025`                                                      |
+| `%y`   | Année sur 2 chiffres                                            | `25`                                                        |
+| `%m`   | Mois sur 2 chiffres (01-12)                                     | `01`                                                        |
+| `%c`   | Mois en chiffres (1-12)                                         | `1`                                                         |
+| `%M`   | Mois en lettres (full)                                          | `November` ou `novembre` selon le langage MySQL             |
+| `%b`   | Mois en lettres abrégé (3 lettres)                              | `Nov` (pas `janv`)                                          |
+| `%d`   | Jour sur 2 chiffres (01-31)                                     | `01`                                                        |
+| `%e`   | Jour en chiffres (1-31)                                         | `1`                                                         |
+| `%D`   | Jour avec suffixe anglais (`st`, `nd`, `rd`, `th`)              | `1st` (MySQL ne fait pas “1er” en français automatiquement) |
+| `%w`   | Jour de la semaine en chiffres (0=dimanche, 1=lundi … 6=samedi) | `0`                                                         |
+| `%a`   | Jour de la semaine abrégé                                       | `Sun`                                                       |
+| `%W`   | Jour de la semaine en lettres (full)                            | `Sunday`                                                    |
+| `%H`   | Heure sur 2 chiffres (00-23, 24h)                               | `14`                                                        |
+| `%k`   | Heure en chiffres (0-23, 24h)                                   | `0`-`23`                                                    |
+| `%h`   | Heure sur 2 chiffres (01-12, 12h)                               | `02`                                                        |
+| `%I`   | Même que `%h`                                                   | `02`                                                        |
+| `%l`   | Heure en chiffres (1-12, 12h)                                   | `2`                                                         |
+| `%i`   | Minute sur 2 chiffres (00-59)                                   | `05`                                                        |
+| `%S`   | Seconde sur 2 chiffres (00-59)                                  | `09`                                                        |
+| `%s`   | Même que `%S`                                                   | `09`                                                        |
+| `%p`   | AM ou PM                                                        | `PM`                                                        |
+| ------ | --------------------------------------------------------------- | ----------------------------------------------------------- |
+
+
+
+8 : Configuration de la langue de la fonction DATE_FORMAT()
+    // Permet de choisir la langue dans laquelle seront affichés les jours et mois en lettre
+
+        SELECT @@lc_time_names; -> lit la langue actuellement configurée
+
+        SET lc_time_names = 'fr_FR'; -> configure la langue française
+        SET lc_time_names = 'ar_MA'; -> configure la langue arabe
+        SET lc_time_names = 'en_US'; -> configure la langue anglaise

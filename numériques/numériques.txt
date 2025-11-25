@@ -1,0 +1,41 @@
+                                        fonctions numériques en MySQL
+------------------------------------------------------------------------------------------------------------------------
+
+1 : MIN
+    // retourne la valeur minimum d'une colonne
+    syntaxe : 
+        SELECT MIN(colonne) FROM table;
+    exemple :
+        SELECT MIN(prix) FROM produits;
+
+
+2 : MAX
+    // retourne la valeur maximum d'une colonne
+    syntaxe : 
+        SELECT MAX(colonne) FROM table;
+    exemple :
+        SELECT MAX(prix) FROM produits;
+
+
+3 : AVG
+    // retourne la moyenne d'une colonne
+    syntaxe : 
+        SELECT AVG(colonne) FROM table;
+    exemple :
+        SELECT AVG(prix) FROM produits;
+
+
+4 : SUM
+    // retourne la somme de toutes les valeurs d'une colonne
+    syntaxe : 
+        SELECT SUM(colonne) FROM table;
+    exemple :
+        SELECT SUM(prix) FROM produits;
+
+
+5 : COUNT
+    // retourne le nombre de lignes d'une table
+    syntaxe : 
+        SELECT COUNT(*) FROM table;
+    exemple :
+        SELECT COUNT(*) FROM produits;

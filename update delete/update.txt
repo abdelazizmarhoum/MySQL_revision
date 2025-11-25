@@ -1,0 +1,31 @@
+                                                Update et Delete en MySQL
+--------------------------------------------------------------------------------------------------------------------
+
+1 : definition de UPDATE et DELETE :
+UPDATE est une commande SQL utilisée pour mettre à jour les données d'une ou plusieurs tables de la base de données.
+DELETE est une commande SQL utilisée pour supprimer les données d'une ou plusieurs tables de la base de données.
+
+2 : syntaxe de UPDATE :
+
+UPDATE nom_table SET colonnes1=valeur1,colonnes2=valeur2,... WHERE condition;
+// le mot-clé SET est utilisé pour spécifier les colonnes et les nouvelles valeurs que l'on veut mettre à jour.
+
+3 : exemples de UPDATE :
+
+    // mettre a jour une colonne
+    UPDATE nom_table SET colonnes1=valeur1 WHERE condition;
+
+    // mettre a jour plusieurs colonnes
+    UPDATE nom_table SET colonnes1=valeur1,colonnes2=valeur2 WHERE condition;
+
+4 : attention!!!!
+    - La clause WHERE est obligatoire sinon toute la table sera mise à jour.
+    - Il est recommandé d'utiliser la clause LIMIT lors de la mise à jour de données pour éviter de modifier plus de ce qu'il faut.
+
+
+5 : syntaxe de DELETE :
+    DELETE FROM nom_table WHERE condition;
+
+    exemple :
+        - DELETE FROM eleves WHERE nom = 'Doe';
+        // suppression de tous les eleves ayant le nom Doe
