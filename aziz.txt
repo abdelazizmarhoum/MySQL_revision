@@ -103,8 +103,6 @@ Partie 7: Modification et Suppression
 Partie 8: Manipulation de Tables
 8.1 Ajoute une colonne email à la table eleves
 
-8.2 Modifie le type de la colonne duree_heures en SMALLINT
-
 8.3 Renomme la colonne nom_cours en titre_cours
 
 8.4 Supprime la colonne email de la table eleves

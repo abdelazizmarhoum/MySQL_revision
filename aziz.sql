@@ -150,8 +150,6 @@ DELETE FROM eleves WHERE age < 16;
 -- 8.1 Ajoute une colonne `email` à la table `eleves`
 ALTER TABLE eleves ADD email VARCHAR(100);
 
--- 8.2 Modifie le type de la colonne `duree_heures` en SMALLINT
-ALTER TABLE cours MODIFY duree_heures SMALLINT;
 
 -- 8.3 Renomme la colonne `nom_cours` en `titre_cours`
 ALTER TABLE cours CHANGE nom_cours titre_cours VARCHAR(100);
