@@ -1,0 +1,96 @@
+                                        Fonctions de regroupement en MySQL
+------------------------------------------------------------------------------------------------------------------------
+
+1 : Définition du GROUP BY :
+    GROUP BY est une clause utilisée pour regrouper des lignes qui ont les mêmes valeurs dans des colonnes spécifiées.
+    Il est généralement utilisé avec des fonctions d'agrégation pour effectuer des calculs sur chaque groupe.
+
+2 : Syntaxe de base :
+
+    SELECT colonne1, colonne2, fonction_agregation(colonne3) FROM table GROUP BY colonne1, colonne2;
+
+3 : Fonctions d'agrégation courantes :
+
+    1 - COUNT()  -> compte le nombre de lignes
+    2 - SUM()    -> calcule la somme des valeurs
+    3 - AVG()    -> calcule la moyenne des valeurs
+    4 - MAX()    -> trouve la valeur maximale
+    5 - MIN()    -> trouve la valeur minimale
+    6 - GROUP_CONCAT() -> concatène les valeurs en une chaîne
+
+4 : Exemples de base :
+
+    1 - Compter le nombre d'employés par département :
+        SELECT departement, COUNT(*) as nombre_employes FROM employes GROUP BY departement;
+
+    2 - Calculer le salaire moyen par poste :
+        SELECT poste, AVG(salaire) as salaire_moyen FROM employes GROUP BY poste;
+
+    3 - Trouver le salaire maximum par département :
+        SELECT departement, MAX(salaire) as salaire_max FROM employes GROUP BY departement;
+
+
+5 : La clause HAVING :
+
+    // HAVING est utilisé pour filtrer les résultats après le regroupement
+    // Contrairement à WHERE qui filtre avant le regroupement
+
+    Exemples :
+    
+    1 - Afficher seulement les départements avec plus de 10 employés :
+        SELECT departement, COUNT(*) as nombre_employes FROM employes GROUP BY departement HAVING COUNT(*) > 10;
+
+    2 - Afficher les postes avec un salaire moyen supérieur à 50000 :
+        SELECT poste, AVG(salaire) as salaire_moyen FROM employes GROUP BY poste HAVING AVG(salaire) > 50000;
+
+6 : Utilisation de HAVING et WHERE ensemble :
+
+    // HAVING peut être utilisé en combinaison avec WHERE
+    // en utlisant WHERE pour filtrer avant le regroupement et HAVING pour filtrer après
+
+    Exemple : 
+    SELECT SUM(salaire),service FROM employes WHERE service IN('Informatique','Comptabilité')  GROUP BY service HAVING SUM(salaire) > 2000 ;
+    // ce qui donne : la somme des salaires des employés dans les services de Informatique ou Comptabilité, groupés par service, mais seulement si la somme des salaires est supérieure à 2000.
+
+
+    ! Attention : 
+        IN est utilisé comme OR
+
+7 : Utilisation du IF :
+
+
+    // la fonction IF permet de tester une condition et de retourner une valeur selon le résultat
+    SELECT IF(condition,valeur_si_vrai,valeur_si_faux) FROM table;
+
+    Example :
+    SELECT IF(age>=18,'adulte','mineur') as statut FROM personnes;
+    // se exemple va afficher la liste des personnes avec leur statut adulte ou mineur selon leur age,
+    // si l'age est supérieur ou égal à 18, il  affiche adulte, sinon il affiche mineur.
+
+
+8 : Les sous-requêtes
+
+
+    // les sous-requêtes sont des requêtes placées à l'intérieur d'une autre requête
+    SELECT * FROM table1 WHERE colonne1 IN (SELECT colonne1 FROM table2);
+
+    Example : 
+    SELECT * FROM employes WHERE salaire > (SELECT salaire FROM départements WHERE id = 10);
+    // se exemple va afficher la liste des employés qui travaillent dans les départements de France
+
+
+9 : Une requête complexe
+
+    Exemple : 
+
+    SELECT SUM(salaire),AVG(salaire),service FROM employes 
+    WHERE salaire IN(SELECT salaire FROM employes where service = 'Comptabilité') 
+    OR salaire > (SELECT MAX(salaire) FROM employes WHERE service = 'Informatique') 
+    GROUP BY service HAVING SUM(salaire) > 50000;
+
+    La requête retourne :
+    Les services dont les employés ont soit :
+    un salaire qui existe dans la Comptabilité
+    ou un salaire supérieur au salaire max de l’Informatique
+    Et dont la somme totale des salaires dépasse 50 000.
+    Avec la somme, la moyenne et le nom du service.

@@ -1,0 +1,43 @@
+Nous disposons d'une base de données contenant toutes les données de l'entreprise, parmi ces
+données nous avons la table << employes >>.
+La table <<< employes >> contient les champs suivants :
+NumEmp: contient les numéros des employés.
+NomEmp: contient les noms des employés.
+SalaireEmp: contient les salaires des employés.
+DateNaissance: Date de naissance des employés.
+DateEmbauche: contient les dates d'embauche des employés
+CodeService: contient les codes de service des employés
+1- Rappeler la commande qui permet d'accéder à MySQL avec le privilège ROOT, ensuite la commande pour afficher les bases existantes, la commande pour choisir une base, et enfin la commande pour afficher les tables existantes dans la base de données choisie (2 pts)
+2- Rappeler l'interet de la commande suivante : << source employees.sql » (1 pts)
+Permet d
+3- Ecrivez une requête pour créer la table << employes », sachant que le champ Numemp est auto increment (2 pts)
+let le de
+4- Quelles sont les méthodes pour réinitialiser le compteur auto increment (2 pts)
+5- Ecrivez une requête permettant d'afficher les salariés ayant un salaire entre 5000 et 8000 (1 pts).
+6- Ecrivez une requête pour afficher les salariés qui existent dans la table << employes >>> ayant un salaire supérieur au salaire de l'employé numéro 26, la requête doit renvoyer les 100 premières lignes (1 pts)
+7- Ecrivez une requête permettant d'afficher les utilisateurs ayant un salaire supérieur au salaire le plus bas des employés du service numéro 80 et inférieur au salaire le plus élevé du service 110 (2 pts)
+8- Ecrivez la requête qui permettra d'afficher la liste des salariés avec le nom, le salaire et commission en affichant uniquement les salariés sans commission << nulle >> (2pts)
+9- Ecrivez la requête qui permettra d'afficher la liste des salariés en calculant le salaire Net selon la formule suivante: Salaire Net = Salaire x Commission et en gérant les correctement valeurs nulle (2pts)
+10- Ecrivez une requête qui permet d'afficher l'ensemble des salariés avec leur date d'embauche et la date de retraite, à afficher de la manière suivante : Lundi 25 Novembre 2024, sachant que l'âge de retraite est de 60 ans. (2 pts)
+11- Ajouter un nouveau champ <<< EmailEMP », écrivez ensuite la requête qui permettra de mettre à jour chaque employés avec son adresse email sachant que l'adresse email doit être selon le format << première lettre du prénom ». «Nom >>@gmail.com (2 pts)
+12- Sauvegarder votre table de sorte que la structure soit conservée et les données soient transférées vers la nouvelle table. (2 pts)
+
+
+Attention: Les questions sont étalées sur deux pages.
+Nous disposons d'une base de données contenant des tables pour la gestion des ressources humaines de l'entreprise selon la configuration suivante :
+Employes (id auto_increment PK, Nom, prenom, salaire, date_naissance, date_embauche, sexe, id_service, idmanager)
+Service (id_service auto_increment pk, nom_service, id_ville)
+Ville (id_ville auto_increment pk,ville)
+1- Ecrivez une requête qui permet d'afficher la somme des salaires par services et ayant une somme de salaire supérieure à 150000. (1 pts)
+2- Ecrivez une requête qui permet d'afficher la moyenne des salaires par services pour les salariés ayant un salaire supérieur à 4000 et ayant une moyenne de salaire supérieure à 11000. (1 pts)
+3- Ecrivez une requête qui permet d'afficher la somme des salaires par services et par ville pour les salariés ayant un salaire inférieur au salaire maximal des salariés du service numéro 90 et ayant une somme de salaire supérieure à 150000. (2 pts)
+4- Rappeler la différence entre les fonctions suivantes NOW(), CURDATE(), CURTIME() (1 pts)
+5- En se référant à la table EMPLOYES, écrivez une requête permettant d'afficher les informations des employés avec leurs dates d'embauche <<< date_embauche >> selon le format suivant <<< Lundi 15 janvier 2024 ». (2 pts)
+6- Ecrivez une requête qui permet d'afficher les employés ayant été embauché au troisième trimestre de l'année 2021 et qui sont nées << date_naissance >> en mois de janvier de l'année 1990, pour rappel, le trimestre peut être récupéré à l'aide de la fonction << QUARTER >> (2 pts)
+7- Afficher les employés qui vont arrivés à l'âge de retraite l'année prochaine, sachant que l'âge de retraite est 60 ans (1 pts)
+8- Afficher les employés dont le nom << NOM >> comme par << ac >> et qui arriveront à la retraite dans 5 ans. (2 pts)
+9- Ecrivez une requête qui permet d'afficher l'ensemble des salariés avec le nom du service de chaque salariés, sachant que l'information du service se trouve dans la table << Services ». (2 pts)
+10- Ecrivez une requête qui permet d'afficher l'ensemble des salariés avec le nom du service de chaque salariés, sachant que l'information du service se trouve dans la table << Services ». la requête doit également afficher les services vides (2 pts)
+11- Ecrivez une requête qui permet d'afficher l'ensemble des salariés avec le nom du service de chaque salariés, ainsi que la localisation de chaque service, sachant que l'information du service se trouve dans la table <<< Services ». et la localisation se trouve dans la table << Ville >>> (2 pts)
+12- Ecrivez une requête qui permettra d'afficher les informations des employés avec ceux de leurs services et leurs managers, les résultats doivent être représentés de la manière suivante :
+<<< L'employé 'Nom de l'employé' travaille dans le service 'Service' dans l'équipe de 'Nom du Manager' >>> (2 pts)
