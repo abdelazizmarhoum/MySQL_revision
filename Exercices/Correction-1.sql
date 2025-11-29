@@ -182,3 +182,53 @@ SELECT DATE_FORMAT(date_naissance, '%d/%m/%Y') FROM eleves;
 
 -- 9.6 Affiche les cours dont le prix est entre 50 et 200 euros, triés par durée
 SELECT * FROM cours WHERE prix BETWEEN 50 AND 200 ORDER BY duree_heures;
+
+
+-- Partie 10: Fonctions de Regroupement (GROUP BY)
+
+-- 10.1 Crée une table "employes"
+CREATE TABLE employes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(50),
+    prenom VARCHAR(50),
+    departement VARCHAR(50),
+    poste VARCHAR(50),
+    salaire DECIMAL(10,2),
+    service VARCHAR(50),
+    age INT
+);
+
+-- 10.2 Insère au moins 6 employés
+INSERT INTO employes (nom, prenom, departement, poste, salaire, service, age) VALUES
+('Durand', 'Paul', 'Informatique', 'Développeur', 45000, 'Informatique', 30),
+('Leroy', 'Anne', 'Informatique', 'Analyste', 52000, 'Informatique', 35),
+('Petit', 'Marc', 'Comptabilité', 'Comptable', 38000, 'Comptabilité', 28),
+('Roux', 'Julie', 'Comptabilité', 'Contrôleur', 55000, 'Comptabilité', 40),
+('Blanc', 'Thomas', 'Marketing', 'Chef de projet', 48000, 'Marketing', 32),
+('Garcia', 'Laura', 'Marketing', 'Assistant', 35000, 'Marketing', 26);
+
+-- 10.3 Compte le nombre d'employés par département
+SELECT COUNT(*),departement as nombre_employes FROM employes GROUP BY departement;
+
+-- 10.4 Calcule le salaire moyen par poste
+SELECT AVG(salaire),poste as salaire_moyen FROM employes GROUP BY poste;
+
+-- 10.5 Trouve le salaire maximum par département
+SELECT MAX(salaire),departement as salaire_max FROM employes GROUP BY departement;
+
+-- 10.6 Affiche seulement les départements qui ont plus de 1 employé
+SELECT COUNT(*),departement as nombre_employes FROM employes GROUP BY departement HAVING COUNT(*) > 1;
+
+-- 10.7 Affiche les postes avec un salaire moyen supérieur à 40000
+SELECT AVG(salaire),poste as salaire_moyen FROM employes GROUP BY poste HAVING AVG(salaire) > 40000;
+
+-- 10.8 Calcule la somme des salaires par service
+SELECT SUM(salaire),service FROM employes WHERE service IN('Informatique','Comptabilité') GROUP BY service HAVING SUM(salaire) > 2000;
+
+-- 10.9 Utilise la fonction IF pour afficher le statut
+SELECT nom, prenom, age, IF(age>=35,'senior','junior') as statut FROM employes;
+
+-- 10.10 Compte les employés "senior" et "junior" par département
+SELECT departement, IF(age>=35,'senior','junior') as statut, COUNT(*) as nombre 
+FROM employes 
+GROUP BY departement, statut;

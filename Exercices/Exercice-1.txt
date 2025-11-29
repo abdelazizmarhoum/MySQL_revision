@@ -123,3 +123,25 @@ Partie 9: Combinaison de Concepts
 9.5 Formate les dates de naissance au format "JJ/MM/AAAA"
 
 9.6 Affiche les cours dont le prix est entre 50 et 200 euros, triés par durée
+
+Partie 10: Fonctions de Regroupement (GROUP BY)
+
+10.1 Crée une table "employes" avec les colonnes : id, nom, prenom, departement, poste, salaire, service, age
+
+10.2 Insère au moins 6 employés dans différents départements (Informatique, Comptabilité, Marketing)
+
+10.3 Compte le nombre d'employés par département
+
+10.4 Calcule le salaire moyen par poste
+
+10.5 Trouve le salaire maximum par département
+
+10.6 Affiche seulement les départements qui ont plus de 1 employé
+
+10.7 Affiche les postes avec un salaire moyen supérieur à 40000
+
+10.8 Calcule la somme des salaires par service, mais seulement pour les services 'Informatique' et 'Comptabilité' et où la somme est supérieure à 2000
+
+10.9 Utilise la fonction IF pour afficher le statut "senior" si l'âge >= 35, "junior" sinon
+
+10.10 Compte combien d'employés sont "senior" et "junior" par département
